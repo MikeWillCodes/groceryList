@@ -47,6 +47,6 @@ public class GroceryItem {
 
     @Override
     public String toString() {
-        return "GroceryItem: " + date + " | " + item + " | " + " | " + price;
+        return  "Date: " + date + " | "+ " Item: " + item + " | " + "Price: $" + price;
     }
 }
