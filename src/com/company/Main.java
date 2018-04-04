@@ -2,6 +2,7 @@ package com.company;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Main {
 
@@ -31,11 +32,11 @@ public class Main {
     }
 
     // How many of item [X] has been purchased?
-    public static int howManyTimesItemWasPurchased(ArrayList<GroceryItem> items, String itemCheck){
+    private static int howManyTimesItemWasPurchased(ArrayList<GroceryItem> items, String itemCheck){
         int count = 0;
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getItem() == itemCheck){
-                  count = count + 1;
+        for (GroceryItem item : items) {
+            if (Objects.equals(item.getItem(), itemCheck)) {
+                count = count + 1;
             }
         }
         return count;
@@ -43,11 +44,11 @@ public class Main {
 
 
     // Total price of items purchased on date [D]
-    public static int totalPriceofItemsPurchased(ArrayList<GroceryItem> items){
+    private static int totalPriceofItemsPurchased(ArrayList<GroceryItem> items){
         int price = 0;
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getDate().isEqual(LocalDate.now())){
-                price = price + items.get(i).getPrice();
+        for (GroceryItem item : items) {
+            if (item.getDate().isEqual(LocalDate.now())) {
+                price = price + item.getPrice();
             }
         }
         return price;
@@ -55,10 +56,10 @@ public class Main {
 
 
     // Count the number of purchased items on last visit
-    public static int purchasedItemsOnLastVisit(ArrayList<GroceryItem> items){
+    private static int purchasedItemsOnLastVisit(ArrayList<GroceryItem> items){
         int count = 0;
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getDate().isAfter(LocalDate.now().minusDays(1))){
+        for (GroceryItem item : items) {
+            if (item.getDate().isAfter(LocalDate.now().minusDays(1))) {
                 count = count + 1;
             }
         }
@@ -66,7 +67,7 @@ public class Main {
     }
 
     // Store the GroceryItem objects in an arraylist
-    public static ArrayList<GroceryItem> groceryArray(GroceryItem a, GroceryItem b, GroceryItem c, GroceryItem d) {
+    private static ArrayList<GroceryItem> groceryArray(GroceryItem a, GroceryItem b, GroceryItem c, GroceryItem d) {
         ArrayList<GroceryItem> items = new ArrayList<>();
         items.add(a);
         items.add(b);
