@@ -20,13 +20,27 @@ public class Main {
         System.out.println("The grocery list and dates " + groceryArray(a,b,c));
 
         //Output the count of purchased items
-        System.out.println("The number of purchased items on last day " + purchasedItems(items));
+        System.out.println("The number of purchased items on last day " + purchasedItemsOnLastVisit(items));
+
+        // Output the total price of date [D]
+        System.out.println("The total price of date [D] items: $" + totalPriceofItemsPurchased(items));
     }
 
 
+    // Total price of items purchased on date [D]
+    public static int totalPriceofItemsPurchased(ArrayList<GroceryItem> items){
+        int price = 0;
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getDate().isEqual(LocalDate.now())){
+                price = price + items.get(i).getPrice();
+            }
+        }
+        return price;
+    }
+
 
     // Count the number of purchased items on last visit
-    public static int purchasedItems(ArrayList<GroceryItem> items){
+    public static int purchasedItemsOnLastVisit(ArrayList<GroceryItem> items){
         int count = 0;
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getDate().isAfter(LocalDate.now().minusDays(1))){
